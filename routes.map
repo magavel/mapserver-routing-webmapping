@@ -1,0 +1,78 @@
+MAP
+        IMAGETYPE      PNG
+        EXTENT         4.19 42.98 7.74 45.26
+        SIZE           900 900
+        IMAGECOLOR     255 255 255
+       
+        PROJECTION
+           "init=epsg:4326"
+        END
+
+TEMPLATEPATTERN  '*'
+
+	LAYER
+		NAME    routes
+		TYPE line
+		STATUS ON
+		EXTENT         4.19 42.98 7.74 45.26
+		CONNECTIONTYPE POSTGIS
+		CONNECTION "host=localhost port=5432 dbname='france' user='postgres' password='magavel' "
+		DATA "geom from routes USING UNIQUE id"      
+		PROJECTION
+			"init=epsg:4326"
+		END
+	
+		CLASSITEM fclass
+		
+		CLASS
+			NAME "routes nationales"
+			EXPRESSION primary
+			STYLE
+				COLOR         255 0 0
+			END
+		END
+		
+		CLASS
+			NAME "routes départementales"
+			EXPRESSION secondary
+			STYLE
+				COLOR        0 255 0
+			END
+		END
+		
+		CLASS
+			NAME "routes communales"
+			EXPRESSION tertiary
+			STYLE
+				COLOR        0 0 255
+			END
+		END
+		
+	END
+
+
+	LAYER
+		NAME    constructions
+		TYPE polygon
+		STATUS ON
+		EXTENT         4.19 42.98 7.74 45.26
+		CONNECTIONTYPE POSTGIS
+		CONNECTION "host=localhost port=5432 dbname='france' user='postgres' password='magavel' "
+		DATA "geom from constructions USING UNIQUE id"      
+		PROJECTION
+			"init=epsg:4326"
+		END
+
+		CLASSITEM fclass
+
+		CLASS
+			NAME "constructions"
+			EXPRESSION building
+			STYLE
+				COLOR        0 0 0
+			END
+		END
+	END
+ 
+       
+END
