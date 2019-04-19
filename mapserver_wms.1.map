@@ -1,0 +1,36 @@
+MAP
+        IMAGETYPE      PNG
+        EXTENT         4.19 42.98 7.74 45.26
+        SIZE           900 900
+        IMAGECOLOR     255 255 255
+       
+        PROJECTION
+           "init=epsg:4326"
+        END
+
+
+	TEMPLATEPATTERN  '*'
+
+	LAYER
+		NAME    osm_local
+		TYPE RASTER
+		OFFSITE 0 0 0 
+		STATUS ON
+		CONNECTIONTYPE WMS
+		CONNECTION "localhost:8888/cgi-bin/mapserv?map=/Applications/MAMP/htdocs/zz-sysoco/mapserver-routing-webmapping/mapserver_wms.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=routes&STYLES=&SRS=EPSG:4326&BBOX=4.19,42.98,7.74,45.26&WIDTH=900&HEIGHT=900&FORMAT=image/png"
+   
+		PROJECTION
+			"init=epsg:4326"
+		END
+		METADATA
+			"wms_title" 			"WMS Server demonstration"
+			"wms_name" 				"osm_auto:all"
+			"wms_srs" 				"epsg:4326"
+			"wms_server_version"	"1.1.1"
+			"wms_format"	"image/png"
+		END
+	
+		
+	END
+       
+END

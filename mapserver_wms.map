@@ -10,48 +10,19 @@ MAP
 
 
 	WEB
-		TEMPLATE 'itineraire.html'
+		TEMPLATE 'itineraire.1.html'
 		IMAGEPATH '/Applications/MAMP/htdocs/zz-sysoco/mapserver-routing-webmapping/images/'
 		IMAGEURL '/zz-sysoco/mapserver-routing-webmapping/images/'
+		METADATA
+			"wms_title" 			"WMS Server demonstration"
+			"wms_onlineresource" 	"localhost:8888/cgi-bin/mapserv?map=/Applications/MAMP/htdocs/zz-sysoco/mapserver-routing-webmapping/mapserver_wms.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=routes&STYLES=&SRS=EPSG:4326&BBOX=4.19,42.98,7.74,45.26&WIDTH=900&HEIGHT=900&FORMAT=image/png"
+			"wms_srs" 				"epsg:4326"
+			"wms_enable_request"	"*"
+		END
 	END
 	FONTSET "fonts/fonts.list"
 
-	TEMPLATEPATTERN  'itineraire*'
-
-	# LEGEND object
-	LEGEND
-		STATUS ON
-		KEYSIZE 18 12
-		# LABEL object
-		LABEL
-			TYPE TRUETYPE
-			SIZE 15
-			COLOR 0 0 89
-			FONT highest
-			ANTIALIAS TRUE
-			POSITION CL
-			PARTIALS FALSE
-			MINDISTANCE 200
-			BUFFER 4
-
-		END
-		#TEMPLATE "legend.html"  ### HTML template file
-	END
-
-	SCALEBAR
-		IMAGECOLOR 255 255 255
-		LABEL
-			COLOR 0 0 0 
-			SIZE TINY
-			
-		END
-		STYLE 1
-		SIZE 100 2
-		COLOR 0 0 0
-		UNITS meters
-		INTERVALS 2
-		STATUS ON
-	END
+	TEMPLATEPATTERN  '*'
 
 	LAYER
 		NAME    routes
@@ -63,6 +34,10 @@ MAP
 		DATA "geom from routes USING UNIQUE id"      
 		PROJECTION
 			"init=epsg:4326"
+		END
+		METADATA
+			"wms_title" 	"les routes"
+			"wms_srs" 		"epsg:4326"
 		END
 	
 		CLASSITEM fclass
